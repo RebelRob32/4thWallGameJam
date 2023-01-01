@@ -559,8 +559,8 @@ Camera:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1060,6 +1060,10 @@ PrefabInstance:
       propertyPath: camTransform
       value: 
       objectReference: {fileID: 963194228}
+    - target: {fileID: 3578376742110513179, guid: 5b902fab4d748e04cb2154f29d59e96e, type: 3}
+      propertyPath: groundCheckDist
+      value: 1.25
+      objectReference: {fileID: 0}
     - target: {fileID: 3578376742110513183, guid: 5b902fab4d748e04cb2154f29d59e96e, type: 3}
       propertyPath: m_RootOrder
       value: 3
