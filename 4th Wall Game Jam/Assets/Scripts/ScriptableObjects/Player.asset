@@ -15,5 +15,8 @@ MonoBehaviour:
   moveSpeed: 4
   walkSpeed: 4
   runSpeed: 8
+  rotationSpeed: 5
   jumpHeight: 1.5
   gravity: -9.81
+  fearLevel: 0
+  asthmaCharges: 3
