@@ -8,6 +8,7 @@ namespace FWGJ.Mechanics
 public class GameManager : MonoBehaviour
 {
         public GameObject player;
+        public bool playerScared;
 
         public void Awake()
         {

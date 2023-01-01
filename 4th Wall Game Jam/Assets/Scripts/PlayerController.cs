@@ -7,18 +7,23 @@ namespace FWGJ.Player
     [RequireComponent(typeof(CharacterController))]
     public class PlayerController : MonoBehaviour
     {
+        [Header("Movement")]
+
         public CharacterController controller;
         public Transform camTransform;
         public PlayerStats stats;
-
-        public float fearLvl;
-
         private bool isGrounded;
         [SerializeField] private float groundCheckDist;
+        
         public LayerMask groundLayer;
 
         private Vector3 moveDir;
         private Vector3 velocity;
+
+        [Header("Gameplay")]
+        
+        public float fearLvl;
+        public bool isScared;
 
         public void Awake()
         {
@@ -89,13 +94,25 @@ namespace FWGJ.Player
 
             if(other.tag == ("Scare Point"))
             {
-                Debug.Log("Scare!");
-                fearLvl += 10f;
-                Destroy(other.gameObject);
+                StartCoroutine(ScareMoment());
+
+                IEnumerator ScareMoment()
+                {
+                    Debug.Log("Scare!");//this will activate audio or UI or something
+                    fearLvl += 10f;
+                    other.gameObject.SetActive(false);
+                    isScared = true;
+                    yield return new WaitForSeconds(2);
+                    isScared = false;
+                    yield return new WaitForSeconds(9);
+                    other.gameObject.SetActive(true);
+                }
+                
             }
 
         }
 
+       
 
 
 
