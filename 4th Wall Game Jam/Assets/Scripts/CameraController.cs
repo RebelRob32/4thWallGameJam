@@ -21,12 +21,12 @@ namespace FWGJ.Mechanics
         }
         public bool isMoving;
         public Vector3 CamOffset = Vector3.zero;
-        public Vector3 ZoomOffset = Vector3.zero;
+        
         public float senstivityX = 5;
         public float senstivityY = 1;
         public float minY = 30;
         public float maxY = 50;
-        public bool isZooming;
+        
         private float currentX = 0;
         private float currentY = 1;
 
@@ -42,12 +42,12 @@ namespace FWGJ.Mechanics
             currentX = Mathf.Repeat(currentX, 360);
             currentY = Mathf.Clamp(currentY, minY, maxY);
             isMoving = (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) ? true : false;
-            isZooming = Input.GetMouseButton(1);
+           
 
         }
         void LateUpdate()
         {
-            Vector3 dist = isZooming ? ZoomOffset : CamOffset;
+            Vector3 dist = CamOffset;
             Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
             transform.position = targetTransform.position + rotation * dist;
             transform.LookAt(targetTransform.position);
