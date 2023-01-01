@@ -28,7 +28,8 @@ namespace FWGJ.Player
             MovePlayer();
         }
 
-
+        //deals with player movement
+        #region Movement
         public void MovePlayer()
         {
             isGrounded = Physics.CheckSphere(transform.position, groundCheckDist, groundLayer);
@@ -40,8 +41,8 @@ namespace FWGJ.Player
 
             float z = Input.GetAxis("Vertical");
             float x = Input.GetAxis("Horizontal");
-            moveDir = new Vector3(x, 0, z);
-            moveDir = transform.TransformDirection(moveDir);
+            Vector3 movementInput = Quaternion.Euler(0, camTransform.transform.eulerAngles.y, 0) * new Vector3(x, 0, z);
+            moveDir = movementInput.normalized;
 
             if(isGrounded)
             {
@@ -58,16 +59,25 @@ namespace FWGJ.Player
                 {
                     velocity.y = Mathf.Sqrt(stats.jumpHeight * -2 * stats.gravity);
                 }
-               
+
+                if (moveDir != Vector3.zero)
+                {
+                    Quaternion desiredRotation = Quaternion.LookRotation(moveDir, Vector3.up);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, stats.rotationSpeed * Time.deltaTime);
+                }
+
 
             }
                 moveDir *= stats.moveSpeed;
                 controller.Move(moveDir * Time.deltaTime);
                 velocity.y += stats.gravity * Time.deltaTime;
                 controller.Move(velocity * Time.deltaTime);
-
-
         }
+        #endregion
+
+
+
+
 
     }
 
