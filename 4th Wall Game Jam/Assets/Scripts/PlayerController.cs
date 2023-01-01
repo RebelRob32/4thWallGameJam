@@ -11,6 +11,8 @@ namespace FWGJ.Player
         public Transform camTransform;
         public PlayerStats stats;
 
+        public float fearLvl;
+
         private bool isGrounded;
         [SerializeField] private float groundCheckDist;
         public LayerMask groundLayer;
@@ -21,6 +23,7 @@ namespace FWGJ.Player
         public void Awake()
         {
             controller = GetComponent<CharacterController>();
+            fearLvl = stats.fearLevel;
         }
 
         public void Update()
@@ -75,6 +78,23 @@ namespace FWGJ.Player
         }
         #endregion
 
+        
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if(other.name==("End Point"))
+            {
+                Debug.Log("Game Over");
+            }
+
+            if(other.tag == ("Scare Point"))
+            {
+                Debug.Log("Scare!");
+                fearLvl += 10f;
+                Destroy(other.gameObject);
+            }
+
+        }
 
 
 
