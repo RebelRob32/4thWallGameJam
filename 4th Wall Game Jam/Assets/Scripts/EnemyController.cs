@@ -38,21 +38,20 @@ namespace FWGJ.Enemy
             
             if(playerInRange)
             {
-                StartCoroutine(ScareTimer());
                 
-                IEnumerator ScareTimer()
-                {
-                    Debug.Log("Boo!");
-                    isScaring = true;
-                    //scare animation
-                    yield return new WaitForSeconds(2);
-                    isScaring = false;
-                    
-                }
-                
-                
+                isScaring = true;
+            }
+            else
+            {
+                isScaring = false;
             }
         }
+        
+
+
+
     }
+
+
 }
 

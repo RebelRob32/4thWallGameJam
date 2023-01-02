@@ -25,7 +25,18 @@ public class GameManager : MonoBehaviour
             if(player.GetComponent<PlayerController>().fearLvl >= 99f)
             {
                 Debug.Log("Too Scared");
+                LoseGame();
             }
+        }
+
+        public void WinGame()
+        {
+            Debug.Log("Win!");
+        }
+
+        public void LoseGame()
+        {
+            //dynamic camera, load menu panel to restart or return to main menu. 
         }
     }
 }
