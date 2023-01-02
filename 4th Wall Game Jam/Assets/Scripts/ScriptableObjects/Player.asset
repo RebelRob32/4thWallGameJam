@@ -19,4 +19,4 @@ MonoBehaviour:
   jumpHeight: 1.5
   gravity: -9.81
   fearLevel: 0
-  asthmaCharges: 3
+  itemCharges: 3

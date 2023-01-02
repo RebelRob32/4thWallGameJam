@@ -22,19 +22,30 @@ namespace FWGJ.Player
         private Vector3 velocity;
 
         [Header("Gameplay")]
-        
+
         public float fearLvl;
+        public float maxFearLvl;
         public bool isScared;
+        public float itemUses;
+        public bool canUseItem;
 
         public void Awake()
         {
+            
             controller = GetComponent<CharacterController>();
             fearLvl = stats.fearLevel;
+            itemUses = stats.itemCharges;
+            maxFearLvl = 100f;
+            
+           
         }
 
         public void Update()
         {
+            ItemUse();
             MovePlayer();
+            fearLvl += 0.25f * Time.deltaTime;
+            
         }
 
         //deals with player movement
@@ -87,8 +98,8 @@ namespace FWGJ.Player
         }
         #endregion
 
-        
 
+        #region TriggerFunctions
         private void OnTriggerEnter(Collider other)
         {
             if(other.name==("End Point"))
@@ -111,18 +122,40 @@ namespace FWGJ.Player
                     yield return new WaitForSeconds(2);
                     isScared = false;
                     groundCheckDist = 1.25f;
-                    yield return new WaitForSeconds(9);
+                    yield return new WaitForSeconds(30);
                     other.gameObject.SetActive(true);
                 }
                 
             }
 
-          
+        }
+        #endregion
 
+        #region PlayerInput
+
+        public void ItemUse()
+        {
+
+            if(Input.GetKeyDown(KeyCode.E) && canUseItem)
+            {
+                if(itemUses <= 0)
+                {
+                   canUseItem = false;
+                }
+                else
+                {
+                    
+                     itemUses--;
+                    fearLvl -= 15f;
+                }
+            }
+            else if(Input.GetKeyDown(KeyCode.E) && !canUseItem)
+            {
+                Debug.Log("No Charges Left");
+            }
         }
 
-       
-
+        #endregion
 
 
     }
