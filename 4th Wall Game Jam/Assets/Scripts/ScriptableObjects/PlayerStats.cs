@@ -17,7 +17,7 @@ namespace FWGJ.Player
 
         [Header("Gameplay Stats")]
         public float fearLevel;
-        public int asthmaCharges = 3;
+        public int itemCharges = 3;
 }
 
 }
