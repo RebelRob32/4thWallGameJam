@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Enemy
   m_EditorClassIdentifier: 
   moveSpeed: 0
-  range: 0
+  range: 5
   isScaring: 0

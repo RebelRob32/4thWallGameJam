@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FWGJ.Mechanics;
 
 namespace FWGJ.Player
 {
@@ -73,9 +74,12 @@ namespace FWGJ.Player
                     Quaternion desiredRotation = Quaternion.LookRotation(moveDir, Vector3.up);
                     transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, stats.rotationSpeed * Time.deltaTime);
                 }
-
-
             }
+            else
+            {
+                stats.moveSpeed = 0;
+            }
+
                 moveDir *= stats.moveSpeed;
                 controller.Move(moveDir * Time.deltaTime);
                 velocity.y += stats.gravity * Time.deltaTime;
@@ -89,26 +93,31 @@ namespace FWGJ.Player
         {
             if(other.name==("End Point"))
             {
-                Debug.Log("Game Over");
+               
+                GameManager.FindObjectOfType<GameManager>().WinGame();
             }
 
             if(other.tag == ("Scare Point"))
             {
+                
                 StartCoroutine(ScareMoment());
-
                 IEnumerator ScareMoment()
                 {
+                    groundCheckDist = -1f;
                     Debug.Log("Scare!");//this will activate audio or UI or something
                     fearLvl += 10f;
                     other.gameObject.SetActive(false);
                     isScared = true;
                     yield return new WaitForSeconds(2);
                     isScared = false;
+                    groundCheckDist = 1.25f;
                     yield return new WaitForSeconds(9);
                     other.gameObject.SetActive(true);
                 }
                 
             }
+
+          
 
         }
 
