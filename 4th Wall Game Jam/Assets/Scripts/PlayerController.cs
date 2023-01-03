@@ -44,7 +44,7 @@ namespace FWGJ.Player
         {
             ItemUse();
             MovePlayer();
-            fearLvl += 0.25f * Time.deltaTime;
+            fearLvl += 0.5f * Time.deltaTime;
             
         }
 
@@ -52,6 +52,8 @@ namespace FWGJ.Player
         #region Movement
         public void MovePlayer()
         {
+            //checks player distance to ground
+
             isGrounded = Physics.CheckSphere(transform.position, groundCheckDist, groundLayer);
 
             if(isGrounded && velocity.y<0)
@@ -63,9 +65,13 @@ namespace FWGJ.Player
             float x = Input.GetAxis("Horizontal");
             Vector3 movementInput = Quaternion.Euler(0, camTransform.transform.eulerAngles.y, 0) * new Vector3(x, 0, z);
             moveDir = movementInput.normalized;
+            
+            //tells game what player can do when grounded
 
             if(isGrounded)
             {
+                //run with Left Shift
+
                 if(!Input.GetKey(KeyCode.LeftShift))
                 {
                     stats.moveSpeed = stats.walkSpeed;
@@ -74,6 +80,8 @@ namespace FWGJ.Player
                 {
                     stats.moveSpeed = stats.runSpeed;
                 }
+
+                //jump with Spacebar
 
                 if(Input.GetKeyDown(KeyCode.Space))
                 {
@@ -99,6 +107,8 @@ namespace FWGJ.Player
         #endregion
 
 
+        //Game events when collider is triggered
+
         #region TriggerFunctions
         private void OnTriggerEnter(Collider other)
         {
@@ -112,6 +122,7 @@ namespace FWGJ.Player
             {
                 
                 StartCoroutine(ScareMoment());
+
                 IEnumerator ScareMoment()
                 {
                     groundCheckDist = -1f;
@@ -130,6 +141,8 @@ namespace FWGJ.Player
 
         }
         #endregion
+
+        //player buttons and what they do
 
         #region PlayerInput
 

@@ -11,6 +11,8 @@ namespace FWGJ.Enemy
         public Transform playerTransform;
         public GameObject player;
 
+        public Vector3 playerOffset;
+
         public LayerMask playerLayer;
 
         public bool playerInRange;
