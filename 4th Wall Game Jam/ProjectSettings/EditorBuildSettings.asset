@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: f36bc76a6e842544c9006e5fda850dc2
+  - enabled: 1
+    path: Assets/Scenes/Carnival.unity
+    guid: e33d1e7f833aa8046bea599b94d3a103
+  - enabled: 1
+    path: Assets/Scenes/Haunted House.unity
+    guid: ef67f29b5105e4943a9830e96c4a86c6
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 0014614b290859b42b4d66c0e6eadc50
   m_configObjects: {}
