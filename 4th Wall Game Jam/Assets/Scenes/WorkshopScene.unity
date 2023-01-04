@@ -678,7 +678,7 @@ GameObject:
   - component: {fileID: 160619459}
   m_Layer: 0
   m_Name: Enemy (3)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3051,6 +3051,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTransform: {fileID: 1371388421}
+  closestEnemy: []
+  foundEnemy: {fileID: 0}
   isMoving: 0
   CamOffset: {x: 0, y: -1.5, z: -3}
   senstivityX: 5
@@ -3172,7 +3174,7 @@ GameObject:
   - component: {fileID: 990891581}
   m_Layer: 0
   m_Name: Enemy (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4683,7 +4685,7 @@ GameObject:
   - component: {fileID: 1487721681}
   m_Layer: 0
   m_Name: Enemy (2)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5002,7 +5004,7 @@ GameObject:
   - component: {fileID: 1802865967}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
