@@ -86,22 +86,7 @@ public class GameManager : MonoBehaviour
         }
 
 
-        public void RestartLevel()
-        {
-            SceneManager.LoadScene("HauntedHouse");
-        }
 
-        public void GoToCarnival()
-        {
-            SceneManager.LoadScene("Carnival");
-        }
-
-
-        public void QuitGame()
-        {
-            Application.Quit();
-            Debug.Log("Game Exited");
-        }
 
 
 
