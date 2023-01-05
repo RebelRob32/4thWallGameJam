@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FWGJ.Player;
 
 namespace FWGJ.Mechanics
 {
@@ -24,6 +25,7 @@ namespace FWGJ.Mechanics
         }
         public bool isMoving;
         public Vector3 CamOffset = Vector3.zero;
+        public Vector3 ScareOffset;
 
         public float senstivityX = 5;
         public float senstivityY = 1;
@@ -44,22 +46,34 @@ namespace FWGJ.Mechanics
         void Update()
         {
             foundEnemy = FindClosestEnemy();
-
-            currentX += Input.GetAxis("Mouse X");
+            if(Player.PlayerController.FindObjectOfType<PlayerController>().isScared == true)
+            {
+                LookAtEnemy();
+            }
+            else
+            {
+             currentX += Input.GetAxis("Mouse X");
             currentY -= Input.GetAxis("Mouse Y");
             currentX = Mathf.Repeat(currentX, 360);
             currentY = Mathf.Clamp(currentY, minY, maxY);
             isMoving = (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) ? true : false;
 
+            }
+
+           
 
         }
 
         void LateUpdate()
         {
-            Vector3 dist = CamOffset;
+            if(Player.PlayerController.FindObjectOfType<PlayerController>().isScared == false)
+            {
+             Vector3 dist = CamOffset;
             Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
             transform.position = targetTransform.position + rotation * dist;
             transform.LookAt(targetTransform.position);
+            }
+           
             CheckWall();
         }
 
@@ -80,13 +94,10 @@ namespace FWGJ.Mechanics
 
         void LookAtEnemy()
         {
-            Vector3 offset = new Vector3(0, 0, 0);
-            Vector3 camOffset = new Vector3(0, 0, 0);
-            Vector3 CamPosition = transform.position + offset;
-
-            transform.position = CamPosition;
             
-
+               this.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(foundEnemy.transform.position - this.transform.position + ScareOffset), 25f * Time.deltaTime);
+           
+            
         }
 
         private Transform FindClosestEnemy()

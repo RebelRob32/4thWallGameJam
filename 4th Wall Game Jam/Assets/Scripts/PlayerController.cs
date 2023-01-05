@@ -130,6 +130,7 @@ namespace FWGJ.Player
                     fearLvl += 10f;
                     other.gameObject.SetActive(false);
                     isScared = true;
+                    transform.LookAt(Mechanics.CameraController.FindObjectOfType<CameraController>().foundEnemy.transform.position);
                     yield return new WaitForSeconds(2);
                     isScared = false;
                     groundCheckDist = 1.25f;
