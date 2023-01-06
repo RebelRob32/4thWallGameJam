@@ -128,11 +128,11 @@ namespace FWGJ.Player
                     groundCheckDist = -1f;
                     Debug.Log("Scare!");//this will activate audio or UI or something
                     fearLvl += 10f;
-                    other.gameObject.SetActive(false);
                     isScared = true;
                     transform.LookAt(Mechanics.CameraController.FindObjectOfType<CameraController>().foundEnemy.transform.position);
-                    yield return new WaitForSeconds(2);
+                    yield return new WaitForSeconds(1);
                     isScared = false;
+                    other.gameObject.SetActive(false);
                     groundCheckDist = 1.25f;
                     yield return new WaitForSeconds(30);
                     other.gameObject.SetActive(true);
