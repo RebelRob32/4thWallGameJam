@@ -118,7 +118,7 @@ namespace FWGJ.Player
                 GameManager.FindObjectOfType<GameManager>().WinGame();
             }
 
-            if(other.tag == ("Scare Point"))
+            if(other.tag == ("Scare Trigger"))
             {
                 
                 StartCoroutine(ScareMoment());
@@ -138,6 +138,12 @@ namespace FWGJ.Player
                     other.gameObject.SetActive(true);
                 }
                 
+            }
+
+            if(other.tag ==("Pickup"))
+            {
+                Destroy(other.gameObject);
+                itemUses++;
             }
 
         }

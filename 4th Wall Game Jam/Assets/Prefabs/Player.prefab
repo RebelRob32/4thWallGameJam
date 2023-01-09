@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 3578376742110513176}
   - component: {fileID: 3578376742110513179}
   - component: {fileID: 3578376742110513178}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,10 +116,15 @@ MonoBehaviour:
   controller: {fileID: 0}
   camTransform: {fileID: 0}
   stats: {fileID: 11400000, guid: 821ade5add835cc4ca6e10e9a5fac07a, type: 2}
-  groundCheckDist: 2
+  groundCheckDist: 1.25
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  fearLvl: 0
+  maxFearLvl: 0
+  isScared: 0
+  itemUses: 0
+  canUseItem: 1
 --- !u!143 &3578376742110513178
 CharacterController:
   m_ObjectHideFlags: 0
@@ -150,7 +155,7 @@ GameObject:
   - component: {fileID: 3578376742625920538}
   - component: {fileID: 3578376742625919461}
   - component: {fileID: 3578376742625919460}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
