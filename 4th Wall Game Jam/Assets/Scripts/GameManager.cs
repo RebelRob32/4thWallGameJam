@@ -85,6 +85,11 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("Main Menu");
         }
 
+        public void MoveToMaze()
+        {
+            SceneManager.LoadScene("WorkShopScene"); //This will change in final build
+        }
+
 
 
 
