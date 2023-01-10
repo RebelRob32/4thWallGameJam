@@ -19,4 +19,4 @@ MonoBehaviour:
   jumpHeight: 1.5
   gravity: -9.81
   fearLevel: 0
-  itemCharges: 3
+  itemCharges: 1

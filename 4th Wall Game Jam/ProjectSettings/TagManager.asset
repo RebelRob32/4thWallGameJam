@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Scare Trigger
   - Pickup
+  - Teleport
   layers:
   - Default
   - TransparentFX

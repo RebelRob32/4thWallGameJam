@@ -13,8 +13,8 @@ namespace FWGJ.Player
         public CharacterController controller;
         public Transform camTransform;
         public PlayerStats stats;
-        private bool isGrounded;
-        [SerializeField] private float groundCheckDist;
+        public bool isGrounded;
+        public float groundCheckDist;
         
         public LayerMask groundLayer;
 
@@ -24,10 +24,13 @@ namespace FWGJ.Player
         [Header("Gameplay")]
 
         public float fearLvl;
+        public float runningFearLvl;
         public float maxFearLvl;
-        public bool isScared;
         public float itemUses;
+
+        public bool isScared;
         public bool canUseItem;
+        public bool isRunning;
 
         public void Awake()
         {
@@ -44,7 +47,8 @@ namespace FWGJ.Player
         {
             ItemUse();
             MovePlayer();
-            fearLvl += 0.5f * Time.deltaTime;
+            FearLevelIncrease();
+            
             
         }
 
@@ -75,10 +79,14 @@ namespace FWGJ.Player
                 if(!Input.GetKey(KeyCode.LeftShift))
                 {
                     stats.moveSpeed = stats.walkSpeed;
+                    isRunning = false;
+                    
                 }
                 else if(Input.GetKey(KeyCode.LeftShift))
                 {
                     stats.moveSpeed = stats.runSpeed;
+                    isRunning = true;
+                    
                 }
 
                 //jump with Spacebar
@@ -146,6 +154,11 @@ namespace FWGJ.Player
                 itemUses++;
             }
 
+            if(other.tag == ("Teleport"))
+            {
+                GameManager.FindObjectOfType<GameManager>().MoveToMaze();
+            }
+
         }
         #endregion
 
@@ -177,6 +190,19 @@ namespace FWGJ.Player
 
         #endregion
 
+        public void FearLevelIncrease()
+        {
+            if(!isRunning)
+            {
+                fearLvl += 0.5f * Time.deltaTime;
+            }
+            else
+            {
+                fearLvl += 2f * Time.deltaTime;
+            }
+        }
+
+        
 
     }
 

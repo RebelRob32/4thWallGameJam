@@ -30,6 +30,7 @@ namespace FWGJ.Enemy
         {
             player = GameObject.FindGameObjectWithTag("Player");
             scarePos = null;
+
             
             startingPos = transform.position;
         }

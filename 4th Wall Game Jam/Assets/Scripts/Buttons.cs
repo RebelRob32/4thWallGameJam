@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class Buttons : MonoBehaviour
 {
+    public GameObject creditsPanel;
+    public GameObject howToPlayPanel;
   
 
     public void MainMenu()
@@ -15,7 +17,13 @@ public class Buttons : MonoBehaviour
 
     public void Credits()
     {
-        SceneManager.LoadScene("Credits");
+        bool isActive = creditsPanel.activeSelf;
+        creditsPanel.SetActive(!isActive);
+    }
+    public void HowToPlay()
+    {
+        bool isActive = howToPlayPanel.activeSelf;
+        howToPlayPanel.SetActive(!isActive);
     }
 
     public void Carnival()
