@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
         
         [Header("Bools")]
         public bool playerScared;
+        public bool inMenu;
 
         public void Awake()
         {
@@ -33,6 +34,19 @@ public class GameManager : MonoBehaviour
 
         public void Update()
         {
+            if(Buttons.FindObjectOfType<Buttons>().isPaused)
+            {
+                
+                Cursor.lockState = CursorLockMode.None;
+                Time.timeScale = 0f;
+            }
+            else
+            {
+                
+                //Cursor.lockState = CursorLockMode.Locked;
+                Time.timeScale = 1f;
+            }
+
             GetCurrentSceneName();
             CheckFear();
             if(chargeText==null)
@@ -43,6 +57,8 @@ public class GameManager : MonoBehaviour
             {
                 chargeText.text = player.gameObject.GetComponent<PlayerController>().itemUses.ToString();
             }
+
+           
             
             
         }
@@ -107,22 +123,25 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene("WorkShopScene"); 
         }
-        
+
         public void GetCurrentSceneName()
         {
             Scene scene = SceneManager.GetActiveScene();
-            if(scene.name == "Main Menu")
+            if (scene.name == "Main Menu" || Buttons.FindObjectOfType<Buttons>().isPaused)
             {
                 Cursor.lockState = CursorLockMode.None;
+                inMenu = true;
             }
-            else if(scene.name == "Carnival" && PlayerController.FindObjectOfType<PlayerController>().mazePanelActive == false || scene.name == "WorkshopScene")
+            else
+            if (PlayerController.FindObjectOfType<PlayerController>().mazePanelActive == false && Buttons.FindObjectOfType<Buttons>().isPaused == false)
             {
                 Cursor.lockState = CursorLockMode.Locked;
+                inMenu = false;
             }
-
             if(scene.name == "WorkshopScene")
             {
                 player.GetComponent<PlayerController>().FearLevelIncrease();
+                inMenu = false;
             }
         }
 

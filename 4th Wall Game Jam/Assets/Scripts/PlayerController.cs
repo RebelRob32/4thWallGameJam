@@ -155,11 +155,12 @@ namespace FWGJ.Player
                 itemUses++;
             }
 
-            if(other.tag == ("Teleport"))
+            if(other.tag == ("Teleport") && Buttons.FindObjectOfType<Buttons>().isPaused==false)
             {
-                Buttons.FindObjectOfType<Buttons>().MoveToMazePanel.SetActive(true);
-                Cursor.lockState = CursorLockMode.Confined;
+                Buttons.FindObjectOfType<Buttons>().moveToMazePanel.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
                 mazePanelActive = true;
+                
             }
 
         }
@@ -168,7 +169,7 @@ namespace FWGJ.Player
         {
             if(other.tag == ("Teleport"))
             {
-                Buttons.FindObjectOfType<Buttons>().MoveToMazePanel.SetActive(false);
+                Buttons.FindObjectOfType<Buttons>().moveToMazePanel.SetActive(false);
                 Cursor.lockState = CursorLockMode.Locked;
                 mazePanelActive = false;
             }
