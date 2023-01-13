@@ -46,6 +46,8 @@ namespace FWGJ.Mechanics
 
         void Update()
         {
+           
+
             foundEnemy = FindClosestEnemy();
             if(Player.PlayerController.FindObjectOfType<PlayerController>().isScared == true)
             {
@@ -53,11 +55,7 @@ namespace FWGJ.Mechanics
             }
             else
             {
-             currentX += Input.GetAxis("Mouse X");
-            currentY -= Input.GetAxis("Mouse Y");
-            currentX = Mathf.Repeat(currentX, 360);
-            currentY = Mathf.Clamp(currentY, minY, maxY);
-            isMoving = (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) ? true : false;
+                LookMouse();
 
             }
 
@@ -76,6 +74,19 @@ namespace FWGJ.Mechanics
             }
            
             CheckWall();
+        }
+
+        public void LookMouse()
+        {
+            if(Buttons.FindObjectOfType<Buttons>().isPaused == false)
+            {
+            currentX += Input.GetAxis("Mouse X");
+            currentY -= Input.GetAxis("Mouse Y");
+            currentX = Mathf.Repeat(currentX, 360);
+            currentY = Mathf.Clamp(currentY, minY, maxY);
+            isMoving = (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) ? true : false;
+            }
+           
         }
 
         void CheckWall()
