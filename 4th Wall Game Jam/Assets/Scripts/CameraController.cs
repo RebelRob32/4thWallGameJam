@@ -39,7 +39,8 @@ namespace FWGJ.Mechanics
 
         public void Start()
         {
-            Cursor.lockState = CursorLockMode.Locked;
+           
+        
             foundEnemy = null;
         }
 
