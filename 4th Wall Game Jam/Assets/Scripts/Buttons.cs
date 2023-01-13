@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using FWGJ.Mechanics;
 
 public class Buttons : MonoBehaviour
 {
     public GameObject creditsPanel;
     public GameObject howToPlayPanel;
+    public GameObject MoveToMazePanel;
   
 
     public void MainMenu()
@@ -34,5 +36,16 @@ public class Buttons : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void MazePanel()
+    {
+        bool isActive = MoveToMazePanel.activeSelf;
+        MoveToMazePanel.SetActive(!isActive);
+    }
+
+    public void MazeButton()
+    {
+        GameManager.FindObjectOfType<GameManager>().MoveToMaze();   
     }
 }

@@ -25,17 +25,35 @@ public class GameManager : MonoBehaviour
         public void Awake()
         {
             player = GameObject.FindWithTag("Player");
+            if(player == null)
+            {
+                return;
+            }
         }
 
         public void Update()
         {
+            GetCurrentSceneName();
             CheckFear();
-            chargeText.text = player.gameObject.GetComponent<PlayerController>().itemUses.ToString();
+            if(chargeText==null)
+            {
+                return;
+            }
+            else
+            {
+                chargeText.text = player.gameObject.GetComponent<PlayerController>().itemUses.ToString();
+            }
+            
             
         }
 
         public void CheckFear()
         {
+            if(player == null)
+            {
+                return;
+            }
+
             if(player.GetComponent<PlayerController>().fearLvl >= 99)
             {
                 LoseGame();
@@ -87,7 +105,25 @@ public class GameManager : MonoBehaviour
 
         public void MoveToMaze()
         {
-            SceneManager.LoadScene("WorkShopScene"); //This will change in final build
+            SceneManager.LoadScene("WorkShopScene"); 
+        }
+        
+        public void GetCurrentSceneName()
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            if(scene.name == "Main Menu")
+            {
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else if(scene.name == "Carnival" && PlayerController.FindObjectOfType<PlayerController>().mazePanelActive == false || scene.name == "WorkshopScene")
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+
+            if(scene.name == "WorkshopScene")
+            {
+                player.GetComponent<PlayerController>().FearLevelIncrease();
+            }
         }
 
 

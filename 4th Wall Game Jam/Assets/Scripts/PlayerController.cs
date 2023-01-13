@@ -31,6 +31,7 @@ namespace FWGJ.Player
         public bool isScared;
         public bool canUseItem;
         public bool isRunning;
+        public bool mazePanelActive;
 
         public void Awake()
         {
@@ -47,7 +48,7 @@ namespace FWGJ.Player
         {
             ItemUse();
             MovePlayer();
-            FearLevelIncrease();
+            
             
             
         }
@@ -156,9 +157,21 @@ namespace FWGJ.Player
 
             if(other.tag == ("Teleport"))
             {
-                GameManager.FindObjectOfType<GameManager>().MoveToMaze();
+                Buttons.FindObjectOfType<Buttons>().MoveToMazePanel.SetActive(true);
+                Cursor.lockState = CursorLockMode.Confined;
+                mazePanelActive = true;
             }
 
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if(other.tag == ("Teleport"))
+            {
+                Buttons.FindObjectOfType<Buttons>().MoveToMazePanel.SetActive(false);
+                Cursor.lockState = CursorLockMode.Locked;
+                mazePanelActive = false;
+            }
         }
         #endregion
 
